@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        </style>
+    </head>
+    <body>
+        <div style="width: 85%; margin: 0 7.5%;">
+            <div style="text-align: center; padding-left: 50px;">            
+                <h3>염색체 개수 리포트</h3>
+                <% if (request.classification === 'stable') { %>
+                    <h3>안정형</h3>
+                <% } else { %>
+                    <h3>불안정형</h3>
+                <% } %>
+
+                <% var normal = 0, abnormal = 0; %>
+                <% var result_json = JSON.parse(request.result_json); %>
+                <h3>전체 개수 : <%= result_json.results.length %></h3>
+                <% result_json.results.forEach(results=> { %>
+                <%     if(results.class === 1) { %>
+                <%         normal++; %>
+                <%     } else if(results.class === 2) { %>
+                <%         abnormal++; %>
+                <%     } %>
+                <% }) %>
+                <h3>정상 : <%= normal %></h3>
+                <h3>비정상 : <%= abnormal %></h3>
+                <img src=<%= request.image %> >
+
+             </div>
+        </div>
+    </body>
+</html>
