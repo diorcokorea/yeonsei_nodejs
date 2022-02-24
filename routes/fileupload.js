@@ -26,7 +26,7 @@ module.exports = (app) => {
   app.post("/fileupload", (req, res) => {
     let path = req.query.path;
     if (!path) path = "./media";
-
+    console.log(path);
     const storage = multer.diskStorage({
       destination: (req, file, callback) => {
         callback(null, `${path}`); //업로드 파일의 저장 위치를 설정

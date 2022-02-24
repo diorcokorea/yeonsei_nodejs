@@ -1,0 +1,37 @@
+version: "2"
+# networks:
+#   kong-net:
+#     external: true
+# volumes:
+#   mongodbdatatest:
+#     external: true
+services:
+  yonseinode:
+    container_name: yonseinode
+    image: diorcokorea/yonseinode
+    # environment:
+    #   - MONGO_URI=mongodb://imcmongoctest:27017/logintest
+    restart: always
+    build: .
+    # networks:
+    #   - kong-net
+    volumes:
+      - /.env:/app/.env
+    ports:
+      - "99:99"
+      # if you want to link to exsiting mongodb
+      # use external_links(container name) as below
+    # external_links:
+    #   - imcmongoctest
+
+  # imcmongotest:
+  #   container_name: imcmongoctest
+  #   image: mongo
+  #   restart: always
+  #   networks:
+  #     - kong-net
+  #   volumes:
+  #     #- ../Program\ Files/MongoDB/Server/4.0/data:/data/db
+  #     - mongodbdatatest:/data/db
+  #   ports:
+  #     - "8007:27017"

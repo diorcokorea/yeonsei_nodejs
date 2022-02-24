@@ -67,7 +67,7 @@ function setTimeoutPromise(ms) {
 }
 app.post("/reading", function (req, res) {
   if (
-    //req.body.image === undefined ||
+    req.body.image === undefined ||
     req.body.filepath === undefined ||
     req.body.classification === undefined ||
     req.sessionID === undefined
@@ -111,12 +111,14 @@ app.post("/reading", function (req, res) {
   let dir = path.join(__dirname, baseDir);
   const mediadir = path.join(__dirname, "/media");
   fs.mkdirSync(dir, { recursive: true });
-  if (req.body.image)
-    base64_decode(req.body.image, path.join(dir, req.body.filepath));
+  console.log(dir, req.body.filepath);
+  base64_decode(req.body.image, path.join(dir, req.body.filepath));
   fs.copyFileSync(
     path.join(mediadir, req.body.filepath),
     path.join(dir, req.body.filepath)
-  ); //-->
+  );
+
+  //-->
   // let pathToSocket = {port:8888, host:'localhost'};
   // let sendJson = JSON.stringify({ "filepath" : path.join(dir, req.body.filepath).toString("utf8"), "classification" : req.body.classification});
   // openClientConnection(pathToSocket, sendJson).then(function(result_json) {
