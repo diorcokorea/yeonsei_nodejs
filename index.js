@@ -176,7 +176,7 @@ app.post("/reading", function (req, res) {
 });
 
 app.post("/pdfgen", function (req, res) {
-  console.log(req.body);
+  console.log("hell", req.body);
   if (
     req.body.image === undefined ||
     req.body.filepath === undefined ||
@@ -265,4 +265,4 @@ app.post("/pdfgen", function (req, res) {
   );
 });
 
-app.listen(3000);
+app.listen(99);

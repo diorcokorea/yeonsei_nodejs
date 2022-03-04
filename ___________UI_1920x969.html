@@ -3903,7 +3903,7 @@ function CreateCenter(is_source_image, img, pos, scale, stage_position, result_j
 	stage.on('wheel', (e) => 
 	{
 		e.evt.preventDefault();
-		
+		console.log(theImg.getWidth(),slider.value)
 		let pointer = group.position();
 		const transform = group.getAbsoluteTransform();
 		const matrix = transform.getMatrix();
