@@ -211,7 +211,7 @@ app.post('/reading', function(req, res) {
 });
 
 app.post("/pdfgen", function (req, res) {
-  console.log(req.body);
+  console.log("hell", req.body);
   if (
     req.body.image === undefined ||
     req.body.filepath === undefined ||
