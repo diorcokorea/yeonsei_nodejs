@@ -122,6 +122,15 @@ app.post('/reading', function(req, res) {
 		res.json(response);
 		return;
 	}
+	let startidx = req.body.image.indexOf(',');
+	if(startidx == -1)
+	{
+		let response = {};
+        response['success'] = false;
+		response['reason'] = "parameter exception";
+		res.json(response);
+		return;
+	}
 	if (!req.session.num)
 	{
 		req.session.num = 1;
@@ -145,7 +154,7 @@ app.post('/reading', function(req, res) {
 	let dir = path.join(__dirname, baseDir);
 	
 	fs.mkdirSync(dir, { recursive: true });
-	base64_decode(req.body.image, path.join(dir, req.body.filepath));
+	base64_decode(req.body.image.substr(startidx, req.body.image.length - startidx), path.join(dir, req.body.filepath));
 //-->
 	let pathToSocket = {port:8888, host:'localhost'}; //이 부분 AI 서버에 맞게 수정이 필요함.
 	let sendJson = JSON.stringify({ "filepath" : path.join(dir, req.body.filepath).toString("utf8"), "classification" : req.body.classification});
